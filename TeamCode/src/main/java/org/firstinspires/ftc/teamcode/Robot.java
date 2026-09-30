@@ -5,7 +5,9 @@ import static java.lang.Math.abs;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.subsystems.Constants.PedroConstants;
 import org.firstinspires.ftc.teamcode.subsystems.Drivebase;
+import org.firstinspires.ftc.teamcode.subsystems.LocalisationControl.Localisation;
 import org.firstinspires.ftc.teamcode.subsystems.Transfer;
 import org.firstinspires.ftc.teamcode.subsystems.Shooting.Turret;
 import org.firstinspires.ftc.teamcode.subsystems.Shooting.Shooter;
@@ -15,18 +17,22 @@ public class Robot {
     Drivebase drivebase;
     Transfer transfer;
     Shooter shooter;
+    Localisation localisation;
     Intake intake;
     Turret turret;
     Gamepad gamepad1;
     Gamepad gamepad2;
 
     double shootDistanceCm = 150.0;
+    public follower follower1 = new follower(PedroConstants.trackWidth, PedroConstants.wheelDiameter, PedroConstants.ticksPerRev);
 
     public Robot (HardwareMap map, Gamepad gamepad1, Gamepad gamepad2){
         drivebase = new Drivebase(map);
         transfer = new Transfer(map);
         intake = new Intake(map);
         turret = new Turret(map);
+        localisation = new Localisation(follower1, true);
+        shooter = new Shooter(map, localisation, turret);
 
         this.gamepad1 = gamepad1;
         this.gamepad2 = gamepad2;
@@ -46,6 +52,11 @@ public class Robot {
                 drivebase.drive(forward, strafe, turn);
             }
         }
+        if (gamepad1.right_trigger > 0.2) {
+            shooter.shoot();
+        } else {
+            shooter.stopShoot(0.2);
+        }
     }
     public void driveWithGamepad2() {
         double forward = gamepad2.left_stick_y;
@@ -54,6 +65,11 @@ public class Robot {
 
         if (abs(forward) > 0.1 || abs(strafe) > 0.1 || abs(turn) > 0.1) {
             drivebase.drive(forward * 0.3, strafe * 0.3, turn * 0.3);
+        }
+        if (gamepad2.right_trigger > 0.2) {
+            shooter.shoot();
+        } else {
+            shooter.stopShoot(0.2);
         }
     }
 }

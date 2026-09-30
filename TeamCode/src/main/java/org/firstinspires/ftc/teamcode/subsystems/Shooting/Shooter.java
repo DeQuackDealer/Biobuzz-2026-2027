@@ -40,9 +40,10 @@ public class Shooter {
 
     DcMotorEx shooterMotor;
 
-    public void init(Localisation l1, HardwareMap hMap) {
+    public Shooter(HardwareMap hMap, Localisation localisation, Turret turret) {
         shooterMotor = hMap.get(DcMotorEx.class, HardwareConstants.shooterMotor);
-        odometry = l1;
+        odometry = localisation;
+        this.turret = turret;
     }
 
     public void update() {
@@ -100,6 +101,9 @@ public class Shooter {
         } else {
             shooterMotor.setPower(0);
         }
+    }
+    public void stopShoot(double min_power) {
+        shooterMotor.setPower(min_power);
     }
     public void shootAtRpm(double rpm) {
         double error = rpm - getTurretRPM();

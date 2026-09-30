@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivebase;
 import org.firstinspires.ftc.teamcode.subsystems.Transfer;
 import org.firstinspires.ftc.teamcode.subsystems.Shooting.Turret;
 import org.firstinspires.ftc.teamcode.subsystems.Shooting.Shooter;
-import org.firstinspires.ftc.teamcode.teleop.subsystems.Intake
+import org.firstinspires.ftc.teamcode.teleop.subsystems.Intake;
 
 public class Robot {
     Drivebase drivebase;
@@ -25,7 +25,6 @@ public class Robot {
     public Robot (HardwareMap map, Gamepad gamepad1, Gamepad gamepad2){
         drivebase = new Drivebase(map);
         transfer = new Transfer(map);
-        shooter = new Shooter(map);
         intake = new Intake(map);
         turret = new Turret(map);
 
@@ -53,24 +52,8 @@ public class Robot {
         double strafe = gamepad2.left_stick_x;
         double turn = gamepad2.right_stick_x;
 
-        if(abs(forward) > 0.1 || abs(strafe) > 0.1 || abs(turn) > 0.1){
-            drivebase.drive(forward*0.3, strafe*0.3, turn*0.3);
+        if (abs(forward) > 0.1 || abs(strafe) > 0.1 || abs(turn) > 0.1) {
+            drivebase.drive(forward * 0.3, strafe * 0.3, turn * 0.3);
         }
-    }
-    public void controlWithGamepad2() {
-        transfer.runTransfer(gamepad2.a);
-        transfer.reverseTransfer(gamepad2.b);
-
-        intake.runIntake(gamepad2.x);
-        intake.reverseIntake(gamepad2.y);
-
-        if (gamepad2.right_trigger_pressed) {
-            shooter.prepareToShoot(shootDistanceCm);
-        } else {
-            shooter.stopShooter();
-        }
-
-        turret.leftTurret(gamepad2.left_bumper);
-        turret.rightTurret(gamepad2.right_bumper);
     }
 }

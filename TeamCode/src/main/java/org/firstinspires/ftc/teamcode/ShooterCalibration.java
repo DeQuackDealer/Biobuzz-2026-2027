@@ -14,27 +14,21 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class ShooterCalibration extends LinearOpMode {
     Shooter shooter;
     DcMotorEx shooterMotor;
-    Gamepad gamepad1;
-    public void init(HardwareMap hMap, Gamepad gamepad1) {
-        shooterMotor = hMap.get(DcMotorEx.class, HardwareConstants.shooterMotor);
-        this.gamepad1 = gamepad1;
-    }
+
     @Override
     public void runOpMode() {
+        // hardwareMap and gamepad1 are already set up by the SDK
+        shooterMotor = hardwareMap.get(DcMotorEx.class, HardwareConstants.shooterMotor);
+
         double power = 0.5;
         waitForStart();
         while (opModeIsActive()) {
-            if (gamepad1.aWasPressed()) {
-                power = power - 0.05;
-            }
-            if (gamepad1.bWasPressed()) {
-                power = power + 0.05;
-            }
-            if (gamepad1.xWasPressed()) {
-                shooterMotor.setPower(power);
-            }
+            if (gamepad1.dpadUpWasPressed())   power -= 0.05;
+            if (gamepad1.dpadDownWasPressed()) power += 0.05;
+            if (gamepad1.xWasPressed())        shooterMotor.setPower(power);
+
             sleep(30);
-            telemetry.addData('Power:', power);
+            telemetry.addData("Power:", power);
             telemetry.update();
         }
     }

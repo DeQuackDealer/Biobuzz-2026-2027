@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.subsystems.Shooting;
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import org.firstinspires.ftc.teamcode.subsystems.Constants.HardwareConstants;
 import org.firstinspires.ftc.teamcode.subsystems.Constants.ShooterConstants;
 
 public class Turret {
@@ -13,7 +15,7 @@ public class Turret {
     private boolean holdingHeading = false;
 
     public Turret (HardwareMap map){
-        turretMotor = map.get(DcMotorEx.class, "turret1");
+        turretMotor = map.get(DcMotorEx.class, HardwareConstants.turretMotor);
 
         turretMotor.setDirection(REVERSETURRET ? DcMotorEx.Direction.REVERSE : DcMotorEx.Direction.FORWARD);
 

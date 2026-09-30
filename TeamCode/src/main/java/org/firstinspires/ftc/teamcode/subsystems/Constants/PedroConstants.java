@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.subsystems.Constants;
 
+import com.bylazar.configurables.annotations.Configurable;
 import com.pedropathing.control.PIDFCoefficients;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.follower.FollowerConstants;
@@ -12,6 +13,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+@Configurable
 public class PedroConstants {
 
     public static MecanumConstants driveConstants = new MecanumConstants()

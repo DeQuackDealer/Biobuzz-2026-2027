@@ -4,17 +4,18 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.subsystems.Constants.HardwareConstants;
+
 public class Intake {
     
     //Hardware stuff
     private DcMotorEx intakeMotor;
 
     // Power, change so it doesnt lowk explode
-    private final double INTAKE_POWER = 0.8; 
 
     public Intake(HardwareMap hardwareMap) {
         //Hardware init
-        intakeMotor = hardwareMap.get(DcMotorEx.class, "intakeMotor");
+        intakeMotor = hardwareMap.get(DcMotorEx.class, HardwareConstants.intake);
         
         // Change intake motor if you need to 
         intakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -22,12 +23,12 @@ public class Intake {
 
     //what u do to intake
     public void runIntake() {
-        intakeMotor.setPower(INTAKE_POWER);
+        intakeMotor.setPower(HardwareConstants.intakePower);
     }
     
     //reversal ig
     public void reverseIntake() {
-        intakeMotor.setPower(-INTAKE_POWER);
+        intakeMotor.setPower(-HardwareConstants.intakePower);
     }
     
     public void stopIntake() {

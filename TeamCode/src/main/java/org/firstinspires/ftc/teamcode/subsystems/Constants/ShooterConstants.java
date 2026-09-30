@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode.subsystems.Constants;
 
+import com.bylazar.configurables.annotations.Configurable;
+
+@Configurable
 public class ShooterConstants {
     public static double SHOOTER_TOLERANCE = 50;
     public static double SHOOTER_P = 0.0001;

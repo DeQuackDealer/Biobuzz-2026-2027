@@ -4,27 +4,24 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.subsystems.Constants.HardwareConstants;
+
 public class Drivebase {
     DcMotor frontLeftMotor;
     DcMotor frontRightMotor;
     DcMotor backLeftMotor;
     DcMotor backRightMotor;
-
-    final boolean FRONT_LEFT_REVERSE = false;
-    final boolean BACK_LEFT_REVERSE = true;
-    final boolean FRONT_RIGHT_REVERSE = true;
-    final boolean BACK_RIGHT_REVERSE = false;
     public Drivebase(HardwareMap map) {
 
-        frontLeftMotor = map.get(DcMotor.class, "frontLeftMotor");
-        backLeftMotor = map.get(DcMotor.class, "backLeftMotor");
-        frontRightMotor = map.get(DcMotor.class, "frontRightMotor");
-        backRightMotor = map.get(DcMotor.class, "backRightMotor");
+        frontLeftMotor = map.get(DcMotor.class, HardwareConstants.flmotor);
+        backLeftMotor = map.get(DcMotor.class, HardwareConstants.blmotor);
+        frontRightMotor = map.get(DcMotor.class,HardwareConstants.frmotor);
+        backRightMotor = map.get(DcMotor.class, HardwareConstants.brmotor);
 
-        frontLeftMotor.setDirection(FRONT_LEFT_REVERSE ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
-        backLeftMotor.setDirection(BACK_LEFT_REVERSE ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
-        frontRightMotor.setDirection(FRONT_RIGHT_REVERSE ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
-        backRightMotor.setDirection(BACK_RIGHT_REVERSE ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
+        frontLeftMotor.setDirection(HardwareConstants.flreverse ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
+        backLeftMotor.setDirection(HardwareConstants.blreverse ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
+        frontRightMotor.setDirection(HardwareConstants.frreverse ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
+        backRightMotor.setDirection(HardwareConstants.brreverse ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
     }
 
     public void drive(double forward, double strafe, double turn) {
@@ -33,10 +30,10 @@ public class Drivebase {
         double frontRightSpeed = forward + turn + strafe;
         double backRightSpeed = forward + turn - strafe;
 
-        frontLeftMotor.setDirection(FRONT_LEFT_REVERSE ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
-        backLeftMotor.setDirection(BACK_LEFT_REVERSE ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
-        frontRightMotor.setDirection(FRONT_RIGHT_REVERSE ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
-        backRightMotor.setDirection(BACK_RIGHT_REVERSE ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
+        frontLeftMotor.setDirection(HardwareConstants.flreverse ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
+        backLeftMotor.setDirection(HardwareConstants.blreverse ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
+        frontRightMotor.setDirection(HardwareConstants.frreverse ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
+        backRightMotor.setDirection(HardwareConstants.brreverse ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
 
         double max1 = Math.max(Math.abs(frontLeftSpeed), Math.abs(backLeftSpeed));
         double max2 = Math.max(Math.abs(frontRightSpeed), Math.abs(backRightSpeed));

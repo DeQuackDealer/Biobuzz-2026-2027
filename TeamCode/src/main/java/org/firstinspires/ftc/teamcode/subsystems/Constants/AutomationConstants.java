@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode.subsystems.Constants;
 
+import com.bylazar.configurables.annotations.Configurable;
+
+@Configurable
 public class AutomationConstants {
 
     public static int BALL_TARGET_COUNT = 4;

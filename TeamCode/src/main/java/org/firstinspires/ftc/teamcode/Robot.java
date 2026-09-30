@@ -6,6 +6,7 @@ import com.pedropathing.follower.Follower;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.subsystems.Constants.HardwareConstants;
 import org.firstinspires.ftc.teamcode.subsystems.Constants.PedroConstants;
 import org.firstinspires.ftc.teamcode.subsystems.Drivebase;
 import org.firstinspires.ftc.teamcode.subsystems.LocalisationControl.Localisation;
@@ -56,7 +57,7 @@ public class Robot {
         if (gamepad1.right_trigger > 0.2) {
             shooter.shoot();
         } else {
-            shooter.stopShoot(0.2);
+            shooter.stopShoot(HardwareConstants.turret_no_power);
         }
         if (gamepad1.leftBumperWasPressed()) turret.leftTurret();
         if (gamepad1.leftBumperWasReleased()) turret.stop();
@@ -75,7 +76,7 @@ public class Robot {
         if (gamepad2.right_trigger > 0.2) {
             shooter.shoot();
         } else {
-            shooter.stopShoot(0.2);
+            shooter.stopShoot(HardwareConstants.turret_no_power);
         }
     }
 }

@@ -4,13 +4,14 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.subsystems.Constants.HardwareConstants;
+
 public class Transfer {
     DcMotor transferMotor;
-    final boolean TRANSFERREVERSE = false;
 
     public Transfer(HardwareMap map) {
-        transferMotor = map.get(DcMotor.class, "transfer");
-        transferMotor.setDirection(TRANSFERREVERSE ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
+        transferMotor = map.get(DcMotor.class, HardwareConstants.transfer);
+        transferMotor.setDirection(HardwareConstants.transferReverse ? DcMotorSimple.Direction.REVERSE : DcMotorSimple.Direction.FORWARD);
     }
 
     public void runTransfer(boolean transferBool){

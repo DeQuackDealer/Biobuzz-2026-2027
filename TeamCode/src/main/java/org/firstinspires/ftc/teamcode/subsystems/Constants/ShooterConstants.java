@@ -7,5 +7,10 @@ public class ShooterConstants {
     public static double SHOOTER_D = 0.00001;
     public static double SHOOTER_F = 0.0001;
     public static double SHOOTER_TICKS_PER_REV = 28;
-    public static double TURRET_TICKS_PER_REV = 28;
+    public static double TURRET_TICKS_PER_REV = 383.6;
+    public static double TURRET_GEAR_RATIO = 2.0;
+    public static double TURRET_TOLERANCE = 1.0;
+    public static double TURRET_P = 0.02;
+    public static double TURRET_F = 0.05;
+    public static double TURRET_SPEED = 0.5;
 }  //lowkirkeniunely if you don't know what these are, slime urself atp

@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import static java.lang.Math.abs;
 
+import com.pedropathing.follower.Follower;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -23,14 +24,14 @@ public class Robot {
     Gamepad gamepad1;
     Gamepad gamepad2;
 
-    double shootDistanceCm = 150.0;
-    public follower follower1 = new follower(PedroConstants.trackWidth, PedroConstants.wheelDiameter, PedroConstants.ticksPerRev);
+    public Follower follower1;
 
     public Robot (HardwareMap map, Gamepad gamepad1, Gamepad gamepad2){
         drivebase = new Drivebase(map);
         transfer = new Transfer(map);
         intake = new Intake(map);
         turret = new Turret(map);
+        follower1 = PedroConstants.createFollower(map);
         localisation = new Localisation(follower1, true);
         shooter = new Shooter(map, localisation, turret);
 
@@ -57,7 +58,12 @@ public class Robot {
         } else {
             shooter.stopShoot(0.2);
         }
+        if (gamepad1.leftBumperWasPressed()) turret.leftTurret();
+        if (gamepad1.leftBumperWasReleased()) turret.stop();
+        if (gamepad1.rightBumperWasPressed()) turret.rightTurret();
+        if (gamepad1.rightBumperWasReleased()) turret.stop();
     }
+    //imma put all changes on jst drive w g1, too cbz
     public void driveWithGamepad2() {
         double forward = gamepad2.left_stick_y;
         double strafe = gamepad2.left_stick_x;

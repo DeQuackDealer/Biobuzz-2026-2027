@@ -63,8 +63,9 @@ public class Shooter {
         rYF = rYS * bT;
         rXF = rXS * bT;
         fD = Math.hypot(sY - rYF, sX - rXF);
-        tH = Math.acos(sX - rXF / fD); //angle to shoot into the goal
-        aH = tH + aF - rH;
+        tH = Math.toDegrees(Math.atan2(sY - rYF, sX - rXF)); //field angle to shoot into the goal, in degrees
+        aH = tH + aF - Math.toDegrees(rH); //turret heading relative to robot, in degrees (rH from Pedro is radians)
+        aH = ((aH + 180) % 360 + 360) % 360 - 180; //wrap to [-180, 180) so the turret takes the short way round
         shootingSpeed = fD / bT; // Move to Shooter subsystem. Horizontal shooting speed.
         bRPM = (shootingSpeed / Math.cos(Math.toRadians(bA))) / 2 * 3.14159265359 * bR * 60 * lF;
     }
@@ -93,7 +94,7 @@ public class Shooter {
         updateVar(odometry);
         updateCalcs();
         double error = bRPM - getTurretRPM();
-        turret.turnToAngle(aH);
+        turret.turnToHeading(aH);
 
         if (Math.abs(error) > ShooterConstants.SHOOTER_TOLERANCE) {
             double power = (error * ShooterConstants.SHOOTER_P) + (ShooterConstants.SHOOTER_F);

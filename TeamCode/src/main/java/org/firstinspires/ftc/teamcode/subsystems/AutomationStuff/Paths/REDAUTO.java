@@ -48,8 +48,12 @@ public class REDAUTO {
         return path;
     }
 
-    public Path path6() {
-        Path path = new Path(new BezierLine(point5, point6));
+    public Pose getStartPose() {
+        return start;
+    }
+
+    public Path path6(Pose from) {
+        Path path = new Path(new BezierLine(from, point6));
         path.setConstantHeadingInterpolation(point6.getHeading());
         return path;
     }

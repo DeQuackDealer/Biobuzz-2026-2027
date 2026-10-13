@@ -15,7 +15,6 @@ public class Localisation {
     private Follower follower;
     private boolean isBlue = true; // goal bool
     private boolean isTipped = true; // goal bool
-    private double FPS = 60; //fps of the control hub
 
     public Localisation(Follower F1, boolean isGoalBlue){
         follower = F1;
@@ -27,8 +26,8 @@ public class Localisation {
 
         heading = follower.getPose().getHeading();
 
-        xVel = (follower.getPose().getX() - xPos) * FPS;
-        yVel = (follower.getPose().getY() - yPos) * FPS;
+        xVel = follower.getVelocity().getXComponent();
+        yVel = follower.getVelocity().getYComponent();
 
         xPos = follower.getPose().getX();
         yPos = follower.getPose().getY();

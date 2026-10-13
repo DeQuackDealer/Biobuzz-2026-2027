@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.teleop.subsystems;
+package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -22,7 +22,7 @@ public class Intake {
 
         rightFlower = hardwareMap.get(Servo.class, HardwareConstants.rightFlower);
         leftFlower = hardwareMap.get(Servo.class, HardwareConstants.leftFlower);
-
+        rightFlower.setDirection(Servo.Direction.REVERSE);
 
         // Change intake motor if you need to 
         intakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -42,9 +42,9 @@ public class Intake {
         intakeMotor.setPower(0);
     }
     public void lowerLeftFlower() {leftFlower.setPosition(HardwareConstants.flowerDownPos);}
-    public void lowerRightFlower() {rightFlower.setPosition(-HardwareConstants.flowerDownPos);}
+    public void lowerRightFlower() {rightFlower.setPosition(HardwareConstants.flowerDownPos);}
     public void flowerDown() {
-        rightFlower.setPosition(-HardwareConstants.flowerUpPos);
+        rightFlower.setPosition(HardwareConstants.flowerUpPos);
         leftFlower.setPosition(HardwareConstants.flowerUpPos);
     }
 }

@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.subsystems.LocalisationControl.Localisatio
 import org.firstinspires.ftc.teamcode.subsystems.Transfer;
 import org.firstinspires.ftc.teamcode.subsystems.Shooting.Turret;
 import org.firstinspires.ftc.teamcode.subsystems.Shooting.Shooter;
-import org.firstinspires.ftc.teamcode.teleop.subsystems.Intake;
+import org.firstinspires.ftc.teamcode.subsystems.Intake;
 
 public class Robot {
     Drivebase drivebase;
@@ -41,6 +41,8 @@ public class Robot {
     }
 
     public void driveWithGamepad1() {
+        localisation.update();
+
         if (abs(gamepad2.left_stick_x + gamepad2.left_stick_y + gamepad2.right_stick_x) < 0.1) {
             double forward = gamepad1.left_stick_y;
             double strafe = gamepad1.left_stick_x;
@@ -56,16 +58,14 @@ public class Robot {
         }
 
         //shooter
-        if (gamepad1.right_trigger > 0.2) {
+        if (gamepad1.right_trigger > 0.2 || gamepad2.right_trigger > 0.2) {
             shooter.shoot();
         } else {
             shooter.stopShoot(HardwareConstants.turret_no_power);
+            if (gamepad1.left_bumper) turret.leftTurret();
+            else if (gamepad1.right_bumper) turret.rightTurret();
+            else turret.stop();
         }
-
-        //turret
-        if (gamepad1.leftBumperWasPressed()) turret.leftTurret();
-        else if (gamepad1.rightBumperWasPressed()) turret.rightTurret();
-        else turret.stop();
 
         //flower
         if(gamepad1.xWasPressed()) intake.lowerLeftFlower();
@@ -87,11 +87,6 @@ public class Robot {
 
         if (abs(forward) > 0.1 || abs(strafe) > 0.1 || abs(turn) > 0.1) {
             drivebase.drive(forward * 0.3, strafe * 0.3, turn * 0.3);
-        }
-        if (gamepad2.right_trigger > 0.2) {
-            shooter.shoot();
-        } else {
-            shooter.stopShoot(HardwareConstants.turret_no_power);
         }
     }
 }

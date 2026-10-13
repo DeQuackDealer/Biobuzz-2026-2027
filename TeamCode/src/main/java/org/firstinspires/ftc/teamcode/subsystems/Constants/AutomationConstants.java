@@ -95,4 +95,10 @@ public class AutomationConstants {
 
     //how far a tracked ball has to move before the sweep is replanned
     public static double PATH_MOVE_EPSILON = 0.5;
+
+    public static double AUTO_SPINUP_POWER = 0.75;
+
+    public static double AUTO_SHOOT_SPINUP_TIMEOUT = 2.0;
+
+    public static double AUTO_SHOOT_FEED_TIME = 1.5;
 }

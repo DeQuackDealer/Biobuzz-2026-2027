@@ -1,19 +1,12 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.OpModes;
 import org.firstinspires.ftc.teamcode.subsystems.Constants.HardwareConstants;
-import org.firstinspires.ftc.teamcode.subsystems.Constants.PedroConstants;
-import org.firstinspires.ftc.teamcode.subsystems.LocalisationControl.Localisation;
-import org.firstinspires.ftc.teamcode.subsystems.Shooting.Shooter;
 import org.firstinspires.ftc.teamcode.subsystems.Shooting.Turret;
 
-import com.arcrobotics.ftclib.util.Direction;
-import com.pedropathing.follower.Follower;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.hardware.HardwareMap;
+
 @TeleOp(name="ShoooterCalib", group="Linear OpMode")
 public class ShooterCalibration extends LinearOpMode {
     //Shooter shooter;

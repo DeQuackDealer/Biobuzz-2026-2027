@@ -54,15 +54,30 @@ public class Robot {
                 drivebase.drive(forward, strafe, turn);
             }
         }
+
+        //shooter
         if (gamepad1.right_trigger > 0.2) {
             shooter.shoot();
         } else {
             shooter.stopShoot(HardwareConstants.turret_no_power);
         }
+
+        //turret
         if (gamepad1.leftBumperWasPressed()) turret.leftTurret();
-        if (gamepad1.leftBumperWasReleased()) turret.stop();
-        if (gamepad1.rightBumperWasPressed()) turret.rightTurret();
-        if (gamepad1.rightBumperWasReleased()) turret.stop();
+        else if (gamepad1.rightBumperWasPressed()) turret.rightTurret();
+        else turret.stop();
+
+        //flower
+        if(gamepad1.xWasPressed()) intake.lowerLeftFlower();
+        else if(gamepad1.bWasPressed()) intake.lowerRightFlower();
+        else intake.flowerDown();
+
+        //intake
+        if (gamepad1.left_trigger > 0.2) {
+            intake.runIntake();
+        } else {
+            intake.stopIntake();
+        }
     }
     //imma put all changes on jst drive w g1, too cbz
     public void driveWithGamepad2() {

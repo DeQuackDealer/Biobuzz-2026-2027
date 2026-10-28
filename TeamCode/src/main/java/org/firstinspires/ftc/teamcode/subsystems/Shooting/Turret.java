@@ -22,7 +22,7 @@ public class Turret {
     }
 
     public void rightTurret(){
-        if (getTurretHeading() < HardwareConstants.TURRET_LIMIT) {
+        if (getTurretHeading() < HardwareConstants.TURRET_LIMIT_UP) {
             holdingHeading = false; 
             turretMotor.setPower(ShooterConstants.TURRET_SPEED);
         } else {
@@ -31,7 +31,7 @@ public class Turret {
     }
 
     public void leftTurret() {
-        if (getTurretHeading() > -HardwareConstants.TURRET_LIMIT) {
+        if (getTurretHeading() > -HardwareConstants.TURRET_LIMIT_UP) {
             holdingHeading = false; 
             turretMotor.setPower(-ShooterConstants.TURRET_SPEED);
         } else {

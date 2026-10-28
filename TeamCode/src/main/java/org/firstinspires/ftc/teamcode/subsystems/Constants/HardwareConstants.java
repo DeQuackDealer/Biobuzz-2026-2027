@@ -27,5 +27,6 @@ public class HardwareConstants {
     public static double flowerUpPos = 0;
     public static String transfer = "transferMotor";
     public static boolean transferReverse = false;
-    public static int TURRET_LIMIT = 540;
+    public static int TURRET_LIMIT_UP = 540;
+    public static int TURRET_LIMIT_DOWN = -120;
 }

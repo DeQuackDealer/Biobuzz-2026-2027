@@ -10,8 +10,10 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 @TeleOp(name="ShoooterCalib", group="Linear OpMode")
 public class ShooterCalibration extends LinearOpMode {
     //Shooter shooter;
-    DcMotorSimple shooterMotor;
+    DcMotorEx shooterMotor;
+    DcMotorEx intakeMotor;
     Turret turret;
+
    // Localisation localisation;
    // public Follower follower1;
 
@@ -23,6 +25,7 @@ public class ShooterCalibration extends LinearOpMode {
         shooterMotor = hardwareMap.get(DcMotorEx.class, HardwareConstants.shooterMotor);
         turret = new Turret(hardwareMap);
         shooterMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        intakeMotor = hardwareMap.get(DcMotorEx.class, "intakeMotor");
 
         double rpm = 0.7;
         waitForStart();
@@ -35,6 +38,7 @@ public class ShooterCalibration extends LinearOpMode {
             if (gamepad1.aWasPressed()) turret.rightTurret();
             if (gamepad1.aWasReleased()) turret.stop();
             if (gamepad1.bWasPressed()) turret.turnToHeading(0);
+            if (gamepad1.yWasPressed()) intakeMotor.setPower(-1);
             turret.update();
             sleep(30);
             telemetry.addData("rpm:", rpm);

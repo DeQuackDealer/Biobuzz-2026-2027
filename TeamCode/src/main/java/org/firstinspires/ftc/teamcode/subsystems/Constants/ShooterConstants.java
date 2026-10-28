@@ -14,5 +14,5 @@ public class ShooterConstants {
     public static double TURRET_GEAR_RATIO = 2.0;
     public static double TURRET_TOLERANCE = 5.0;
     public static double TURRET_POWER = 0.5;
-    public static double TURRET_SPEED = 0.05;
+    public static double TURRET_SPEED = 0.1;
 }  //lowkirkeniunely if you don't know what these are, slime urself atp

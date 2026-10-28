@@ -7,7 +7,6 @@ import com.pedropathing.paths.PathChain;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
 import org.firstinspires.ftc.teamcode.subsystems.AutomationStuff.Code.AutoIntake;
 import org.firstinspires.ftc.teamcode.subsystems.AutomationStuff.Paths.REDAUTO;
 import org.firstinspires.ftc.teamcode.subsystems.Constants.AutomationConstants;
@@ -36,7 +35,7 @@ public class RedAuto extends OpMode {
         TO_PATH6,           //flywheel ramping
         SHOOT_PATH6,
         TO_PATH7,           //intake runnin
-        DONE
+        DONE //why did I even comment on ts
     }
 
     private Follower follower;

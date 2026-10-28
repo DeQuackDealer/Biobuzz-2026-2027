@@ -22,8 +22,9 @@ public class ShooterCalibration extends LinearOpMode {
        // shooter = new Shooter(hardwareMap, localisation, turret);
         shooterMotor = hardwareMap.get(DcMotorEx.class, HardwareConstants.shooterMotor);
         turret = new Turret(hardwareMap);
+        shooterMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        double rpm = 0.75;
+        double rpm = 0.7;
         waitForStart();
         while (opModeIsActive()) {
             if (gamepad1.dpadUpWasPressed())   rpm -= 0.05;

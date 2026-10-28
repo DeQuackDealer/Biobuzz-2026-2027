@@ -59,32 +59,15 @@ public class Turret {
 
     public void update() {
         if (!holdingHeading) return;
-
         double currentHeading = getTurretHeading();
-        if (currentHeading > HardwareConstants.TURRET_LIMIT) {
-            double escapeError = HardwareConstants.TURRET_LIMIT - currentHeading; 
-            turretMotor.setPower(Math.max(-0.4, escapeError * 0.1)); 
-            return;
-        } else if (currentHeading < -HardwareConstants.TURRET_LIMIT) {
-            double escapeError = -HardwareConstants.TURRET_LIMIT - currentHeading; 
-            turretMotor.setPower(Math.min(0.4, escapeError * 0.1)); 
-            return;
-        }
-
-        double error = targetHeading - currentHeading;
-        while (error > 180)  error -= 360;
-        while (error < -180) error += 360;
-
-        if (Math.abs(error) > ShooterConstants.TURRET_TOLERANCE) {
-            double pTerm = error * ShooterConstants.TURRET_P;
-            
-            double fScaling = Math.min(1.0, Math.abs(error) / (ShooterConstants.TURRET_TOLERANCE * 3));
-            double fTerm = Math.signum(error) * ShooterConstants.TURRET_F * fScaling;
-            
-            double power = pTerm + fTerm;
-            turretMotor.setPower(Math.max(-1, Math.min(1, power)));
-        } else {
+        if (atTargetHeading()) {
             turretMotor.setPower(0);
+            holdingHeading = true;
+        } else if (currentHeading < targetHeading - ShooterConstants.TURRET_TOLERANCE) {
+            turretMotor.setPower(ShooterConstants.TURRET_POWER);
+        } else if (currentHeading > targetHeading + ShooterConstants.TURRET_TOLERANCE) {
+            turretMotor.setPower(-ShooterConstants.TURRET_POWER);
         }
     }
+
 }
